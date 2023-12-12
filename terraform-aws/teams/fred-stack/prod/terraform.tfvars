@@ -4,9 +4,9 @@ s3-bucket-name      = "843825445314-us-east-1-terraform-state"
 #Network Details
 region   = "us-east-1"
 vpc_name = "SocVpn"
-vpc_id   = "vpc-048d7d79"
-vpc_cidr = "172.31.0.0/16"
-igw_id   = "igw-5642652d"
+vpc_id   = "vpc-0020f7b333b57c9e4"
+vpc_cidr = "10.0.0.0/16"
+igw_id   = "igw-0a49a4ac5d480d781"
 #Cluster Details
 cluster_name    = "stack-cluster"
 cluster_version = "1.27"

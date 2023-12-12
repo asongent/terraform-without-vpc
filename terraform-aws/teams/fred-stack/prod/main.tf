@@ -1,9 +1,11 @@
 locals {
-  subnet_cidr_priv = cidrsubnets(var.vpc_cidr, 2, 2, 2, 2, )
+  subnet_cidr_priv = cidrsubnets(var.vpc_cidr, 2, 2, 2, 2)
 }
+
 locals {
-  subnet_cidr_pub = cidrsubnets(local.subnet_cidr_priv[3], 2, 2, 2, 2, )
+  subnet_cidr_pub = cidrsubnets(local.subnet_cidr_priv[2], 2, 2, 2, 2)
 }
+
 data "aws_availability_zones" "available" {
   state = "available"
 }
@@ -48,7 +50,7 @@ module "subnet" {
   cidr_block_subnet_priv = local.subnet_cidr_priv[count.index]                      #var.cidr_priv[count.index]
   availability_zone      = data.aws_availability_zones.available.names[count.index] #var.azs[count.index]
   vpc_name               = var.vpc_name
-  public_route_table     = "rtb-0dfb9d86072345b59" #"${var.vpc_name}-public-route_table[*].id"
+  public_route_table     = aws_route_table.public.id #"${var.vpc_name}-public-route_table.id"
   cluster_name           = var.cluster_name
 
 }
